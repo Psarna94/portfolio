@@ -1,0 +1,110 @@
+<!--<main-text class="demo-test"> Just checking stuff out</main-text>-->
+<!--<div class="wrap">-->
+<!--<div class="cube">-->
+<!--<div class="front">front</div>-->
+<!--<div class="back">back</div>-->
+<!--<div class="top">top</div>-->
+<!--<div class="bottom">bottom</div>-->
+<!--<div class="left">left</div>-->
+<!--<div class="right">right</div>-->
+<!--</div>-->
+<!--</div>-->
+<div ui-view="mainView" class="anim-in-out anim-fade" data-anim-speed="1000">
+    <div class="main-container">
+        <div class="main-area">
+
+            <div class="main-text ">
+                <h3 class="i-craft">I craft, human usable products in the</h3>
+                <!--</main-text>-->
+                <div class="circle-top"></div>
+                <div class="circle-left-topmost"></div>
+                <div class="circle-right-topmost"></div>
+                <div class="circle-left-top"></div>
+                <div class="circle-right-top"></div>
+                <div class="circle-right"></div>
+                <div class="circle-left"></div>
+                <div class="circle-left-bottom"></div>
+                <div class="circle-right-bottom"></div>
+                <div class="circle-left-bottommost"></div>
+                <div class="circle-right-bottommost"></div>
+                <div class="circle-bottom"></div>
+
+                <main-text>
+                    <h2 class="digital-sphere">DIGITAL SPHERE</h2>
+                </main-text>
+
+            </div>
+
+
+        </div>
+        <div class="main-buttons">
+
+            <div class="container">
+
+
+                <div class="row">
+                    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+                        <main-buttons>
+                            <button ui-sref="about"
+                                    class="main-button button-red col-lg-6 col-lg-offset-4 col-md-6 col-md-offset-4 col-sm-6 col-sm-offset-4 col-xs-12">
+                                ABOUT
+                            </button>
+                        </main-buttons>
+                    </div>
+                    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+                        <main-buttons>
+                            <button ui-sref="work"
+                                    class="main-button button-green col-lg-6 col-lg-offset-1 col-md-6 col-md-offset-1 col-sm-6 col-sm-offset-1 col-xs-12">
+                                PORTFOLIO
+                            </button>
+                        </main-buttons>
+                    </div>
+                    <!--<div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">-->
+                    <!--<main-buttons>-->
+                    <!--<button ui-sref="contact"-->
+                    <!--class="main-button button-blue col-lg-8 col-lg-offset-2 col-md-8 col-md-offset-2 col-sm-8 col-sm-offset-2 col-xs-10 col-xs-offset-1">-->
+                    <!--CONTACT-->
+                    <!--</button>-->
+                    <!--</main-buttons>-->
+                    <!--</div>-->
+                </div>
+
+                <div class="row">
+                    <div class="col-xs-8 col-xs-offset-2">
+                        <button ng-click="showOverlay = true" class="col-xs-10 col-xs-1 mobile-button">MORE</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <div ng-show="showOverlay" class="overlay fx-fade-up ">
+            <div class="container-mobile">
+                <div class="container">
+                    <div class="row">
+                        <button ui-sref="about" class="main-button-mobile col-xs-8 col-xs-offset-2">ABOUT</button>
+                    </div>
+
+                    <div class="row" style="height: 50px;">
+
+                    </div>
+
+                    <div class="row">
+                        <button ui-sref="work" class="main-button-mobile col-xs-8 col-xs-offset-2">PORTFOLIO</button>
+                    </div>
+
+
+                    <div class="row" style="height: 30px;"></div>
+
+                    <div class="row">
+                        <button ng-click="showOverlay = false" class="close-button fx-fade-down"><img
+                                src="client/assets/images/cross97.png"
+                                alt=""/></button>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>

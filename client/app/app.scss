@@ -1,0 +1,44 @@
+$icon-font-path: "/bower_components/bootstrap-sass-official/vendor/assets/fonts/bootstrap/";
+$fa-font-path: "/bower_components/font-awesome/fonts";
+
+@import 'bootstrap-sass-official/vendor/assets/stylesheets/bootstrap';
+@import 'font-awesome/scss/font-awesome';
+//@import url(https://fonts.googleapis.com/css?family=Roboto:400,300);
+
+/**
+ * App-wide Styles
+ */
+
+* {
+  margin: 0;
+  padding: 0;
+}
+
+body{
+//  background: url('/assets/images/stardust.png');
+//  background-size:100% 100%;
+//  background-repeat: no-repeat;
+}
+
+//custom font style for DIGITAL SPHERE
+
+@font-face {
+  font-family: "Beyno";
+  src: url('/assets/fonts/BEYNO.ttf');
+}
+
+@font-face {
+  font-family: "custom";
+  src: url('/assets/fonts/Roboto-Thin.ttf');
+}
+
+// Component styles are injected through grunt
+// injector
+@import 'about/about.scss';
+@import 'account/login/login.scss';
+@import 'admin/admin.scss';
+@import 'contact/contact.scss';
+@import 'main/main.scss';
+@import 'work/work.scss';
+@import 'modal/modal.scss';
+// endinjector

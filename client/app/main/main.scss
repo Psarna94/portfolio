@@ -1,0 +1,699 @@
+//mixin for circle position, only X right now
+@mixin transformX($initAngle, $position, $finalAngle) {
+  -webkit-transform: rotate($initAngle) translateX($position) rotate($finalAngle);
+  -moz-transform: rotate($initAngle) translateX($position) rotate($finalAngle);
+  -ms-transform: rotate($initAngle) translateX($position) rotate($finalAngle);
+  -o-transform: rotate($initAngle) translateX($position) rotate($finalAngle);
+  transform: rotate($initAngle) translateX($position) rotate($finalAngle);
+}
+
+//mixin for circle position, only Y right now
+@mixin transformY($initAngle, $position, $finalAngle) {
+  -webkit-transform: rotate($initAngle) translateY($position) rotate($finalAngle);
+  -moz-transform: rotate($initAngle) translateY($position) rotate($finalAngle);
+  -ms-transform: rotate($initAngle) translateY($position) rotate($finalAngle);
+  -o-transform: rotate($initAngle) translateY($position) rotate($finalAngle);
+  transform: rotate($initAngle) translateY($position) rotate($finalAngle);
+}
+
+@mixin animation($list) {
+  -webkit-animation: $list 16s linear infinite;
+  -moz-animation: $list 16s linear infinite;
+  -o-animation: $list 16s linear infinite;
+  animation: $list 16s linear infinite;
+}
+
+$circle_radius: 4000%;
+
+@mixin keyframe($animation-name, $init_angle, $transform, $fin_angle) {
+  @-webkit-keyframes #{$animation-name} {
+    from {
+      -webkit-transform: rotate($init_angle) translateX($transform) rotate(-$fin_angle);
+    }
+    to {
+      -webkit-transform: rotate(360deg + $init_angle) translateX($transform) rotate(360deg+$init_angle);
+    }
+  }
+  @-moz-keyframes #{$animation-name} {
+    from {
+      -moz-transform: rotate($init_angle) translateX($transform) rotate(-$fin_angle);
+    }
+    to {
+      -moz-transform: rotate(360deg + $init_angle) translateX($transform) rotate(360deg+$init_angle);
+    }
+  }
+
+  @-o-keyframes #{$animation-name} {
+    from {
+      -o-transform: rotate($init_angle) translateX($transform) rotate(-$fin_angle);
+    }
+    to {
+      -o-transform: rotate(360deg + $init_angle) translateX($transform) rotate(360deg+$init_angle);
+    }
+  }
+  @keyframes #{$animation-name} {
+    from {
+      transform: rotate($init_angle) translateX($transform) rotate(-$fin_angle);
+    }
+    to {
+      transform: rotate(360deg + $init_angle) translateX($transform) rotate(360deg+$init_angle);
+    }
+  }
+}
+
+//main class for the revolving circles
+.circle {
+  width: 3px;
+  height: 3px;
+  border-radius: 50%;
+  background-color: #f5f5f5;
+  position: absolute;
+  left: 50%;
+  top: 25%;
+
+}
+
+.main-text {
+  position: absolute;
+  width: 100%;
+  height: 50%;
+  //  background-color: white;
+  top: 25%;
+  //  background-color: greenyellow;
+
+}
+
+.i-craft {
+  font-family: custom;
+  position: absolute;
+  width: 100%;
+  height: 25%;
+  //  background-color: #0000ff;
+  //  border: 1px solid black;
+  //  color: white;
+  //  color: #393939;
+  //  transform: rotate3d(0, 0, 0, 0deg);
+  //  transition: transform 0.3s linear
+  color: white;
+}
+
+.main-area {
+  text-align: center;
+  color: #393939;
+  vertical-align: middle;
+  width: 100%;
+  height: 50%;
+  position: absolute;
+  top: 20%;
+  //  background-color: red;
+
+}
+
+.main-container {
+  background: url('client/assets/images/stardust.png');
+  position: absolute;
+  width: 100%;
+  height: 100%;
+}
+
+.digital-sphere {
+  font-family: Beyno;
+  position: absolute;
+  width: 100%;
+  height: 25%;
+  color: white;
+  //  background-color: #008000;
+  //  border: 1px solid black;
+  text-shadow: 0px 0px 0px rgb(14, 14, 16);
+  top: 25%;
+    transform: rotate3d(0, 0, 0, 0deg);
+
+  transition: transform 0.3s linear, text-shadow 0.3s linear;
+}
+
+.circle-left {
+  @extend .circle;
+  @include transformX(0deg, -$circle_radius, 0deg);
+  @include animation(orbit);
+}
+
+@include keyframe(orbit, 0deg, -$circle_radius, 0deg);
+
+.circle-left-topmost {
+  @extend .circle;
+  @include transformX(60deg, -$circle_radius, -60deg);
+  @include animation(orbitltm);
+}
+
+@include keyframe(orbitltm, 60deg, -$circle_radius, 60deg);
+
+.circle-left-top {
+  @extend .circle;
+  @include transformX(30deg, -$circle_radius, -30deg);
+  @include animation(orbitlt);
+}
+
+@include keyframe(orbitlt, 30deg, -$circle_radius, 30deg);
+
+.circle-left-bottom {
+  @extend .circle;
+  @include transformX(-30deg, -$circle_radius, 30deg);
+  @include animation(orbitlb);
+}
+
+@include keyframe(orbitlb, -30deg, -$circle_radius, 30deg);
+
+.circle-left-bottommost {
+  @extend .circle;
+  @include transformX(-60deg, -$circle_radius, 60deg);
+  @include animation(orbitlbm);
+}
+
+@include keyframe(orbitlbm, -60deg, -$circle_radius, 60deg);
+
+.circle-right {
+  @extend .circle;
+  @include transformX(0deg, $circle_radius, 0deg);
+  @include animation(orbit2);
+}
+
+@include keyframe(orbit2, 0deg, $circle_radius, 0deg);
+
+.circle-right-top {
+  @extend .circle;
+  @include transformX(-30deg, $circle_radius, 30deg);
+  @include animation(orbitrt);
+}
+
+@include keyframe(orbitrt, -30deg, $circle_radius, 30deg);
+
+.circle-right-topmost {
+  @extend .circle;
+  @include transformX(-60deg, $circle_radius, 60deg);
+  @include animation(orbitrtm);
+}
+
+@include keyframe(orbitrtm, -60deg, $circle_radius, 60deg);
+
+.circle-right-bottom {
+  @extend .circle;
+  @include transformX(30deg, $circle_radius, 30deg);
+  @include animation(orbitrb);
+}
+
+@include keyframe(orbitrb, 30deg, $circle_radius, 30deg);
+
+.circle-right-bottommost {
+  @extend .circle;
+  @include transformX(60deg, $circle_radius, -60deg);
+  @include animation(orbitrbm);
+
+}
+
+@include keyframe(orbitrbm, 60deg, $circle_radius, 60deg);
+
+.circle-top {
+  @extend .circle;
+  @include transformY(0deg, $circle_radius, 0deg);
+  @include animation(orbit3)
+}
+
+@-webkit-keyframes orbit3 {
+  from {
+    -webkit-transform: rotate(0deg) translateX(-$circle_radius) rotate(0deg);
+  }
+  to {
+    -webkit-transform: rotate(360deg) translateX($circle_radius) rotate(360deg);
+  }
+}
+
+@-moz-keyframes orbit3 {
+  from {
+    -moz-transform: rotate(0deg) translateX(-$circle_radius) rotate(0deg);
+  }
+  to {
+    -moz-transform: rotate(360deg) translateX($circle_radius) rotate(360deg);
+  }
+}
+
+@-o-keyframes orbit3 {
+  from {
+    -o-transform: rotate(0deg) translateX(-$circle_radius) rotate(0deg);
+  }
+  to {
+    -o-transform: rotate(360deg) translateX($circle_radius) rotate(360deg);
+  }
+}
+
+@keyframes orbit3 {
+  from {
+    transform: rotate(0deg) translateY(-$circle_radius) rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg) translateY(-$circle_radius) rotate(360deg);
+  }
+}
+
+.circle-bottom {
+  @extend .circle;
+  @include transformY(0deg, $circle_radius, 0deg);
+  @include animation(orbit4);
+}
+
+@-webkit-keyframes orbit4 {
+  from {
+    -webkit-transform: rotate(0deg) translateX($circle_radius) rotate(0deg);
+  }
+  to {
+    -webkit-transform: rotate(360deg) translateX($circle_radius) rotate(360deg);
+  }
+}
+
+@-moz-keyframes orbit4 {
+  from {
+    -moz-transform: rotate(0deg) translateX(2000%) rotate(0deg);
+  }
+  to {
+    -moz-transform: rotate(360deg) translateX(2000%) rotate(-360deg);
+  }
+}
+
+@-o-keyframes orbit4 {
+  from {
+    -o-transform: rotate(360deg) translateX($circle_radius) rotate(360deg);
+  }
+  to {
+    -o-transform: rotate(360deg) translateX($circle_radius) rotate(-360deg);
+  }
+}
+
+@keyframes orbit4 {
+  from {
+    transform: rotate(0deg) translateY($circle_radius) rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg) translateY($circle_radius) rotate(360deg);
+  }
+}
+
+.main-buttons {
+  position: absolute;
+  width: 100%;
+  bottom: 10%;
+
+}
+
+.main-button {
+  background-color: rgba(0, 0, 0, 0);
+  height: 50px;
+  border: 1px solid #f5f5f5;
+  font-family: Beyno;
+  outline: hidden;
+  color: #f5f5f5;
+}
+
+.main-button-mobile {
+  background-color: rgba(0, 0, 0, 0);
+  height: 50px;
+  color: white;
+  border: 1px solid white;
+  font-family: Beyno;
+}
+
+.button-red {
+  box-shadow: 0px 1px 0px 0px #f83d61;
+  transition:0.5s;
+}
+
+.button-red:hover{
+    box-shadow: 0px 3px 0px 0px #f83d61;
+
+}
+
+.button-green {
+  box-shadow: 0px 1px 0px 0px #8df435;
+  text-shadow: 0px 1px 0px 0px green;
+  transition: 0.5s;
+}
+
+.button-green:hover{
+  box-shadow: 0px 3px 0px 0 #8df435;
+  text-shadow: 0px 1px 0px 0px green;
+}
+
+.button-blue {
+  box-shadow: 0px 1px 0px 0px blue;
+}
+
+.main-button:focus {
+  outline: 0;
+}
+
+.overlay {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0px;
+  left: 0px;
+  background-color: rgba(0, 0, 0, 0.9555);
+  margin: 0px;
+  padding: 0px;
+  visibility: hidden;
+  text-align: center;
+}
+
+.mobile-button {
+  width: 100%;
+  background-color: rgba(0, 0, 0, 0);
+  height: 50px;
+  border: 1px solid white;
+  color: white;
+  font-family: Beyno;
+  visibility: hidden;
+}
+
+.container-mobile {
+  position: absolute;
+  //  background-color: red;
+  width: 100%;
+  top: 35%;
+}
+
+.close-button {
+  background-color: transparent;
+  border-radius: 50%;
+  border: 1px solid white;
+  width: 36px;
+  height: 36px;
+}
+
+.close-button img {
+  width: 20px;
+  height: 20px;
+}
+
+@keyframes roundandround {
+  to {
+    transform: rotateX(360deg) rotateY(360deg);
+  }
+}
+
+@keyframes show {
+  to {
+    opacity: 1;
+  }
+}
+
+.scene {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  //  margin: 2% auto;
+  //  background-color: black;
+  perspective: 4000px;
+}
+
+.wrapper {
+  width: 100%;
+  height: 100%;
+  transform: rotateX(45deg) rotateY(45deg);
+  transform-style: preserve-3d;
+  //  background-color: green;
+}
+
+.ball {
+  position: absolute;
+  width: 25%;
+  height: 100%;
+  left: 37.5%;
+  //  margin: 0 auto;
+  transform-style: preserve-3d;
+  //  background-color: red;
+  animation: roundandround 7.5s 1.3s infinite linear;
+}
+
+.ring {
+  position: absolute;
+  //  top: 25%;
+  //  left: 25%;
+  width: 100%;
+  height: 100%;
+  border: 2px solid;
+  border-radius: 50%;
+  opacity: 0;
+  animation: show 2s forwards ease-in-out;
+}
+
+.ring:nth-child(1) {
+  color: #f83d61;
+  transform: rotateY(4deg);
+  animation-delay: 0s;
+}
+
+.ring:nth-child(2) {
+  color: #8df435;
+  transform: rotateY(64deg);
+  animation-delay: 0.1s;
+}
+
+.ring:nth-child(3) {
+  color: #2f77fb;
+  transform: rotateY(128deg);
+  animation-delay: 0.2s;
+}
+
+.ring:nth-child(4) {
+  color: #c8cb1b;
+  transform: rotateY(16deg);
+  animation-delay: 0.3s;
+}
+
+.ring:nth-child(5) {
+  color: #deb21a;
+  transform: rotateY(20deg);
+  animation-delay: 0.4s;
+}
+
+.ring:nth-child(6) {
+  color: #ef9621;
+  transform: rotateY(24deg);
+  animation-delay: 0.5s;
+}
+
+.ring:nth-child(7) {
+  color: #f29122;
+  transform: rotateY(28deg);
+  animation-delay: 0.6s;
+}
+
+.ring:nth-child(8) {
+  color: #fb7430;
+  transform: rotateY(32deg);
+  animation-delay: 0.7s;
+}
+
+.ring:nth-child(9) {
+  color: #fe5944;
+  transform: rotateY(36deg);
+  animation-delay: 0.8s;
+}
+
+.ring:nth-child(10) {
+  color: #fe5548;
+  transform: rotateY(40deg);
+  animation-delay: 0.9s;
+}
+
+.ring:nth-child(11) {
+  color: #f83d61;
+  transform: rotateY(44deg);
+  animation-delay: 1s;
+}
+
+.ring:nth-child(12) {
+  color: #ec2b7d;
+  transform: rotateY(48deg);
+  animation-delay: 1.1s;
+}
+
+.ring:nth-child(13) {
+  color: #e82983;
+  transform: rotateY(52deg);
+  animation-delay: 1s;
+}
+
+.ring:nth-child(14) {
+  color: #d41e9f;
+  transform: rotateY(56deg);
+  animation-delay: 0.9s;
+}
+
+.ring:nth-child(15) {
+  color: #bd1aba;
+  transform: rotateY(60deg);
+  animation-delay: 0.8s;
+}
+
+.ring:nth-child(16) {
+  color: #b81ac0;
+  transform: rotateY(64deg);
+  animation-delay: 0.7s;
+}
+
+.ring:nth-child(17) {
+  color: #9c1fd7;
+  transform: rotateY(68deg);
+  animation-delay: 0.6s;
+}
+
+.ring:nth-child(18) {
+  color: #802aea;
+  transform: rotateY(72deg);
+  animation-delay: 0.5s;
+}
+
+.ring:nth-child(19) {
+  color: #7a2dee;
+  transform: rotateY(76deg);
+  animation-delay: 0.4s;
+}
+
+.ring:nth-child(20) {
+  color: #5f40f9;
+  transform: rotateY(80deg);
+  animation-delay: 0.3s;
+}
+
+.ring:nth-child(21) {
+  color: #4657fe;
+  transform: rotateY(84deg);
+  animation-delay: 0.2s;
+}
+
+.ring:nth-child(22) {
+  color: #425cfe;
+  transform: rotateY(88deg);
+  animation-delay: 0.1s;
+}
+
+.ring:nth-child(23) {
+  color: #2f77fb;
+  transform: rotateY(92deg);
+  animation-delay: 0s;
+}
+
+@media (orientation: landscape) and(max-height: 500px) {
+
+  .main-area {
+    top: 15%;
+  }
+
+  .container-mobile {
+  position: absolute;
+  //  background-color: red;
+  width: 100%;
+  top: 25%;
+}
+
+  .circle {
+    display: none;
+  }
+
+  .i-craft {
+    margin-bottom: 5px;
+  }
+
+  h1 {
+    font-size: 1.5em;
+  }
+
+  .main-buttons {
+    bottom: 2%;
+  }
+
+  .main-button {
+    height: 30px;
+    font-size: 1em;
+  }
+
+}
+
+@media (max-width: 840px) {
+  .ball {
+    position: absolute;
+    width: 40%;
+    height: 100%;
+    left: 30%;
+    //  margin: 0 auto;
+    transform-style: preserve-3d;
+    //    background-color: red;
+    animation: roundandround 7.5s 1.3s infinite linear;
+  }
+}
+
+@media (max-width: 557px) {
+  h2 {
+    font-size: 1.5em;
+  }
+
+  h3 {
+    font-size: 1.3em;
+  }
+
+  .main-button {
+    visibility: hidden;
+  }
+
+  .mobile-button {
+    visibility: visible;
+    font-size: 18px;
+  }
+
+  .main-buttons {
+
+    bottom: 10%;
+  }
+
+  .overlay {
+    visibility: visible;
+  }
+
+  .ball {
+    position: absolute;
+    width: 40%;
+    height: 100%;
+    left: 30%;
+    //  margin: 0 auto;
+    transform-style: preserve-3d;
+    //    background-color: red;
+    animation: roundandround 7.5s 1.3s infinite linear;
+  }
+
+}
+
+@media (max-width: 330px) {
+  h1 {
+    font-size: 1.3em;
+  }
+
+  h3 {
+    font-size: 1.1em;
+  }
+}
+
+@media (max-width: 310px) {
+  h1 {
+    font-size: 1.1em;
+  }
+
+  h3 {
+    font-size: 1.1em;
+  }
+}
+
+
+
+
+
+
+

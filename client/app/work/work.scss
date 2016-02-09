@@ -1,0 +1,40 @@
+body {
+  background: url('/assets/images/stardust.png');
+}
+
+.portfolio-heading{
+  text-align: center;
+  color: white;
+  font-family: Beyno;
+  margin: 60px;
+}
+
+.image{
+  height: 20%;
+}
+
+.img{
+  width:100%;
+}
+
+
+.case-heading{
+  color: white;
+}
+
+.case-desc{
+  color: white;
+  font-family: custom;
+}
+
+.coming-soon{
+  border: 1 px solid white;
+}
+
+.home{
+  background-color: transparent;
+  border: 1 px solid;
+  color: white;
+  font-family: Beyno;
+  height: 50px;
+}
